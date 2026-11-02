@@ -1,0 +1,73 @@
+{
+  "manifest_version": 3,
+  "name": "AI Bridge",
+  "version": "0.11.0",
+  "description": "A local Firefox relay connecting ChatGPT, Codex CLI, Grok and Gemini.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "nativeMessaging",
+    "scripting",
+    "clipboardWrite",
+    "unlimitedStorage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://grok.com/*",
+    "https://assets.grok.com/*",
+    "https://imagine-public.x.ai/*",
+    "https://*.oaiusercontent.com/*",
+    "http://127.0.0.1/*",
+    "https://gemini.google.com/*",
+    "https://lh3.googleusercontent.com/*",
+    "https://lh3.google.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "relay-media-v0102.js",
+      "relay-files-v0102.js",
+      "goal-state-v011.js",
+      "coordinator-wake-v011.js",
+      "outputs-store-v0102.js",
+      "notifications-v0102.js",
+      "outputs-controller-v0102.js",
+      "recovery-v0102.js",
+      "background-v0102.js"
+    ]
+  },
+  "action": {
+    "default_title": "AI Bridge — Idle",
+    "default_icon": "icons/idle.svg",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://grok.com/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": [
+        "execution-settings.js",
+        "relay-plan-v0102.js",
+        "relay-media-v0102.js",
+        "relay-files-v0102.js",
+        "goal-state-v011.js",
+        "content-v0102.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "codex-relay-local@example.invalid",
+      "strict_min_version": "128.0"
+    }
+  },
+  "optional_permissions": [
+    "notifications"
+  ]
+}

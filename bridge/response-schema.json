@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILED"
+      ]
+    },
+    "reply": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifacts": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "reply",
+    "artifacts"
+  ],
+  "additionalProperties": false
+}

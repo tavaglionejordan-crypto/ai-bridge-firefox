@@ -1,0 +1,10 @@
+bridge/.state/
+native/
+node_modules/
+.test-tools/
+artifacts/
+.share/
+.relay-images-*/
+.env
+.env.*
+*.log
